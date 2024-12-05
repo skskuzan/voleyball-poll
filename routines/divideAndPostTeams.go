@@ -3,7 +3,6 @@ package routines
 import (
 	"encoding/csv"
 	"fmt"
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"io"
 	"log"
 	"os"
@@ -19,18 +18,18 @@ func DivideAndPostTeams() {
 	// Implement your team balancing algorithm here
 	teams := balanceTeams(participants)
 
-	msg:=teamsMessage(teams)
+	msg := teamsMessage(teams)
 
 	// Send teams to the group
 	helpers.SendMessage(chatID, msg)
 }
 
-func teamsMessage(teams [][]models.Player) string{
-	msg:=""
-	for i,team:=range teams{
-		msg += fmt.Sprint("Команда ", i+1,":\n")
-		for _,player:=range team{
-			msg +=  fmt.Sprint(player.Name,"\n"
+func teamsMessage(teams [][]models.Player) string {
+	msg := ""
+	for i, team := range teams {
+		msg += fmt.Sprint("Команда ", i+1, ":\n")
+		for _, player := range team {
+			msg += fmt.Sprint(player.Name, "\n")
 		}
 		msg += "\n"
 	}
